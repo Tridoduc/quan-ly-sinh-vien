@@ -7,6 +7,7 @@ let students = [
     { id: "SV05", name: "Hoàng Văn E", className: "CNTT3" }
 ];
 
+
 function displayStudents() {
     const studentList = document.getElementById("student-list");
 
@@ -15,6 +16,12 @@ function displayStudents() {
             <td>${student.id}</td>
             <td>${student.name}</td>
             <td>${student.className}</td>
+            <td>
+                <button class="btn-delete"
+                        onclick="deleteStudent('${student.id}')">
+                    Xóa
+                </button>
+            </td>
         </tr>
     `).join("");
 }
@@ -46,4 +53,21 @@ function addStudent() {
 
     alert("Thêm sinh viên thành công!");
 }
+
+function deleteStudent(id) {
+    const confirmDelete = confirm(
+        "Bạn có chắc chắn muốn xóa sinh viên này không?"
+    );
+
+    if (!confirmDelete) {
+        return;
+    }
+
+    students = students.filter(student => student.id !== id);
+
+    displayStudents();
+
+    alert("Xóa sinh viên thành công!");
+}
+
 
