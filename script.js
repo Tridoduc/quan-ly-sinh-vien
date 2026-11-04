@@ -21,3 +21,29 @@ function displayStudents() {
 
 displayStudents();
 
+function addStudent() {
+    const id = document.getElementById("student-id").value.trim();
+    const name = document.getElementById("student-name").value.trim();
+    const className = document.getElementById("student-class").value.trim();
+
+    if (!id || !name || !className) {
+        alert("Vui lòng nhập đầy đủ thông tin!");
+        return;
+    }
+
+    if (students.some(student => student.id === id)) {
+        alert("Mã sinh viên đã tồn tại!");
+        return;
+    }
+
+    students.push({ id, name, className });
+
+    displayStudents();
+
+    document.getElementById("student-id").value = "";
+    document.getElementById("student-name").value = "";
+    document.getElementById("student-class").value = "";
+
+    alert("Thêm sinh viên thành công!");
+}
+
